@@ -1,5 +1,5 @@
-# TechJob_Project
-Khởi động Angular
+
+#Khởi động Angular
 Chạy lệnh npm i
 Chạy lệnh npm s -o để khởi động server
 Khởi động Laravel
