@@ -1,0 +1,163 @@
+<div class="container-fluid login-fluid clear-left clear-right">
+  <div class="login-container">
+    <!-- login header -->
+    <div class="login-header">
+      <div class="w-login m-auto">
+        <div class="login-logo">
+          <h3>
+            <!-- <a href="#">Tech<span class="txb-logo">Jobs.</span></a> -->
+            <a routerLink="">
+              <img src="../../../../../assets/frontend/img/techjobs_bgw.png" alt="TechJobs">
+            </a>
+          </h3>
+          <span class="login-breadcrumb"><em>/</em>Người tìm việc</span>
+        </div>
+        <div class="login-right">
+          <a href="#" class="btn btn-return">Trang chủ</a>
+        </div>
+      </div>
+    </div>
+    <!-- (end) login header -->
+
+    <div class="clearfix"></div>
+
+    <div class="padding-top-90"></div>
+
+    <!-- login main -->
+    <div class="login-main">
+      <div class="w-login m-auto">
+        <div class="row">
+          <!-- login main descriptions -->
+          <div class="col-md-6 col-sm-12 col-12 login-main-left">
+            <img src="../../../../../assets/frontend/img/banner-login.png">
+          </div>
+          <!-- login main form -->
+          <div class="col-md-6 col-sm-12 col-12 login-main-right">
+
+            <form class="login-form reg-form" *ngIf="formSeekerRegister" [formGroup]="formSeekerRegister" (ngSubmit)="submitSeekerRegister()">
+              <div class="login-main-header">
+                <h3>Đăng Ký</h3>
+              </div>
+              <div class="input-div one">
+                <div class="div lg-lable">
+                  <input type="text" class="input form-control-lgin" placeholder="Họ và tên*" formControlName="name">
+                </div>
+                <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)">
+                  <div *ngIf="f.name.errors">
+                    <div *ngIf="f.name.errors.required">
+                      <small class="validate">*Tên người dùng không được để trống!</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-div one">
+                <div class="div lg-lable">
+                  <input type="text" class="input form-control-lgin" placeholder="Địa chỉ Email*" formControlName="email">
+                </div>
+                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+                  <div *ngIf="f.email.errors">
+                    <div *ngIf="f.email.errors.required">
+                      <small class="validate">*Địa chỉ email là bắt buộc!</small>
+                    </div>
+                    <div *ngIf="f.email.errors.email">
+                      <small class="validate">*Email không đúng định dạng!</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="input-div one">
+                <div class="div lg-lable">
+                  <input type="text" class="input form-control-lgin" placeholder="Số điện thoại*" formControlName="phone">
+                </div>
+                <div *ngIf="f.phone.invalid && (f.phone.dirty || f.phone.touched)">
+                  <div *ngIf="f.phone.errors">
+                    <div *ngIf="f.phone.errors.pattern">
+                      <small class="validate">*Số điện thoại không hợp lệ!</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-div one">
+                <div class="div lg-lable">
+                  <input type="password" class="input form-control-lgin" placeholder="Password*" formControlName="password">
+                </div>
+                <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                  <div *ngIf="f.password.errors">
+                    <div *ngIf="f.password.errors.required">
+                      <small class="validate">*Mật khẩu là bắt buộc!</small>
+                    </div>
+                    <div *ngIf="f.password.errors.minlength">
+                      <small class="validate">*Mật khẩu phải từ 8 ký tự!</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-div one">
+                <div class="div lg-lable">
+                  <input type="password" class="input form-control-lgin" placeholder="Confirm password*" formControlName="confirmpassword">
+                </div>
+                <div *ngIf="f.confirmpassword.invalid && (f.confirmpassword.dirty || f.confirmpassword.touched)">
+                  <div *ngIf="f.confirmpassword.errors">
+                    <div *ngIf="f.confirmpassword.errors.required">
+                      <small class="validate">*Xác nhận mật khẩu không được để trống!</small>
+                    </div>
+                    <div *ngIf="f.confirmpassword.errors.MustMatch">
+                      <small class="validate">*Mật khẩu không trùng khớp!</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group d-block frm-text">
+                <a href="#" class="fg-login d-inline-block"></a>
+                <a routerLink="/login" class="fg-login float-right d-inline-block">Bạn đã có tài khoản? Đăng Nhập</a>
+              </div>
+              <div *ngIf="formSeekerRegister.valid">
+              <button type="submit" class="btn btn-primary float-right btn-login d-block w-100">Đăng Ký</button>
+              </div>
+              <div class="form-group d-block w-100 mt-5">
+                <div class="text-or text-center">
+                  <span>Hoặc</span>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6 col-12 pr-7">
+                    <button class="btn btn-secondary btn-login-facebook btnw w-100 float-left">
+                      <span>Đăng nhập bằng Facebook</span>
+                    </button>
+                  </div>
+                  <div class="col-sm-6 col-12 pl-7">
+                    <button class="btn btn-secondary btn-login-google btnw w-100 float-left">
+                      <span>Đăng nhập bằng Google</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- (end) login main -->
+  </div>
+</div>
+<footer class="login-footer">
+  <div class="w-login m-auto">
+    <div class="row">
+      <!-- login footer left -->
+      <div class="col-md-6 col-sm-12 col-12 login-footer-left">
+        <div class="login-copyright">
+          <p>Copyright © 2020 <a href="#"> TechJobs</a>. All Rights Reserved.</p>
+        </div>
+      </div>
+      <!-- login footer right -->
+      <div class="col-md-6 col-sm-12 col-12 login-footer-right">
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

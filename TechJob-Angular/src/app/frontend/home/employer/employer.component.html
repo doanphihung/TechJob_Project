@@ -1,0 +1,36 @@
+
+<!-- top employer -->
+<div class="container-fluid">
+  <div class="container top-employer">
+    <div class="row">
+      <div class="col-md-12 top-employer-contain">
+        <div class="header">
+          <h3>Nhà tuyển dùng hàng đầu</h3>
+        </div>
+        <div class="row">
+<!--          <div class="col-md-3 col-sm-6 col-12 top-employer-wrap" *ngFor="let employer of employers; index as i">-->
+<!--            <div class="top-employer-item">-->
+<!--              <a href="#">-->
+<!--                <div class="emp-img-thumb">-->
+<!--                  <img src="http://localhost:8000/storage/company/{{employer.image}}">-->
+<!--                </div>-->
+<!--                <h3 class="company">{{employer.code}}</h3>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+          <div class="col-md-3 col-sm-6 col-12 top-employer-wrap" *ngFor="let employer of employers">
+            <div class="top-employer-item">
+              <a href="#">
+                <div class="emp-img-thumb">
+                  <img src="http://localhost:8000/storage/company/{{employer.image}}">
+                </div>
+                <h3 class="company">{{employer.user.name}}</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (end) top employer -->

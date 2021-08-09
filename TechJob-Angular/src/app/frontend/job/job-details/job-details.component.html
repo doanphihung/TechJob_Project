@@ -1,0 +1,158 @@
+<div class="clearfix"></div>
+
+
+<!-- job detail header -->
+<div class="container-fluid job-detail-wrap">
+  <div class="container job-detail">
+    <div class="job-detail-header">
+      <div class="row">
+        <div class="col-md-2 col-sm-12 col-12">
+          <div class="job-detail-header-logo">
+            <a href="#">
+              <img src="http://localhost:8000/storage/company/{{job?.company.image}}" class="job-logo-ima"
+                   alt="job-logo">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-7 col-sm-12 col-12">
+          <div class="job-detail-header-desc">
+            <div class="job-detail-header-title">
+              <a href="#">[<span *ngIf="job?.city">{{job.city.name}}</span>] {{job?.title}} – Up
+                to {{job?.upto | currency: 'VND'}}</a>
+            </div>
+            <div class="job-detail-header-company">
+              <a *ngIf="job?.category">{{job.category.name}}</a>
+            </div>
+            <div class="job-detail-header-de">
+              <ul>
+                <li><i class="fa fa-map-marker icn-jd"></i><span *ngIf="job?.city">{{job?.city.name}}</span></li>
+                <li *ngIf="user_role == 1"><i class="fa fa-usd icn-jd"></i><span
+                  class="salary-min">{{job?.from_salary | currency: 'VND'}}</span>
+                  <span class="salary-max">{{job?.to_salary | currency: 'VND'}}</span></li>
+                <li *ngIf="user_role == 3"><a routerLink="/login" style="color: orange"><i class="fa fa-usd icn-jd"></i>
+                  Đăng nhập để xem mức lương <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+                <li style="color: blue"><i class="fa fa-calendar icn-jd"></i>Hạn nộp: {{job?.expire | date}}</li>
+              </ul>
+            </div>
+            <div class="job-detail-header-tag">
+              <ul>
+                <li>
+                  <a href="#">{{job?.language}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-12 col-12" *ngIf="user_role == 1 || user_role == 3">
+          <div class="jd-header-wrap-right">
+            <div class="jd-center">
+              <a href="javascript:" (click)="apply(job?.id)" class="btn btn-primary btn-apply">Ứng tuyển</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (end) job detail header -->
+
+<div class="clearfix"></div>
+
+<!-- Phần thân -->
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 col-12 clear-left">
+        <div class="main-wrapper">
+
+        <button style="width: 100%" type="button" class="btn btn-dark" data-bs-toggle="modal"
+                data-bs-target="#exampleModal"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>Giới thiệu cho bạn bè
+        </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Main wrapper -->
+      <div class="col-md-8 col-sm-12 col-12 clear-left">
+        <div class="main-wrapper">
+          <!-- content -->
+          <h2 class="widget-title">
+            <span>Mô tả công việc</span>
+          </h2>
+          <div class="jd-content">
+            (*). {{job?.description}}.<br>
+          </div>
+        </div>
+      </div>
+      <!-- Sidebar -->
+      <div class="col-md-4 col-sm-12 col-12 clear-right">
+        <div class="side-bar mb-3">
+          <h2 class="widget-title">
+            <span>Thông tin công ty</span>
+          </h2>
+          <div class="company-intro">
+            <a href="#">
+              <img src="http://localhost:8000/storage/company/{{job?.company.image}}" class="job-logo-ima"
+                   alt="job-logo">
+            </a>
+          </div>
+          <h2 class="company-intro-name">{{company?.name}}</h2>
+          <ul class="job-add">
+            <li>
+              <i class="fa fa-map-marker ja-icn"></i>
+              <span> {{company?.address}}</span>
+            </li>
+            <li>
+              <i class="fa fa-bar-chart ja-icn"></i> Nhân sự:
+              <span>{{company?.employees}}+</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="side-bar mb-3">
+          <h2 class="widget-title">
+            <span>Việc làm tương tự</span>
+          </h2>
+
+          <div class="job-tt-contain">
+            <div class="side-bar mb-3">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- (end) Phần thân -->
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Email cần gửi</h2>
+      </div>
+      <form action="" *ngIf="formForwardMail" [formGroup]="formForwardMail" (ngSubmit)="forwardMail()">
+      <div class="modal-body">
+          <input style="width: 100%" type="text" placeholder="Địa chỉ Email" formControlName="email">
+        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+          <div *ngIf="f.email.errors">
+            <div *ngIf="f.email.errors.required">
+              <small class="validate">*Bạn cần nhập email để giới thiệu việc cho bạn bè!</small>
+            </div>
+            <div *ngIf="f.email.errors.email">
+              <small class="validate">*Email không đúng định dạng!</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-primary" [disabled]="formForwardMail.invalid" >Gửi</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

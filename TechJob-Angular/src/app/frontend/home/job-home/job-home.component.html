@@ -1,0 +1,101 @@
+<!-- job board & sidebar section-->
+<div class="container-fluid jb-wrapper">
+  <div class="container">
+    <div class="row">
+      <!-- job board -->
+      <div class="col-md-8 col-sm-12 col-12">
+        <div class="job-board-wrap">
+          <h2 class="widget-title">
+            <span>Tin tuyển dụng mới nhất</span>
+          </h2>
+
+          <div class="job-group">
+            <div class="job pagi" *ngFor="let job of jobs, index as i">
+              <div class="job-content">
+                <div class="job-logo">
+                  <a href="#">
+                    <img src="http://localhost:8000/storage/company/{{job.company.image}}" class="job-logo-ima"
+                         alt="job-logo">
+                  </a>
+                </div>
+
+                <div class="job-desc">
+                  <div class="job-title">
+                    <a [routerLink]="['page/job/'+ job.id + '/details']"  style="color: #4141af">{{job.title}}</a>
+                  </div>
+                  <div class="job-company">
+                    <a *ngIf="job.category">{{job.category.name}}</a>  <a class="job-address" *ngIf="job.city"><i class="fa fa-map-marker" aria-hidden="true"></i> {{job.city.name}}</a>
+                  </div>
+                  <div class="job-inf">
+                    <div class="job-main-skill">
+                      <i class="fa fa-tags" aria-hidden="true"></i><a href="#">{{job.language}}</a>
+                    </div>
+                    <div class="job-salary" *ngIf="user_role == 1" style="color: orange">
+                      <span class="salary-min">{{job?.from_salary | currency: 'VND'}}</span>
+                      <span class="salary-max">{{job?.to_salary | currency: 'VND'}}</span>
+                    </div>
+                    <div class="job-salary" *ngIf="user_role == 3">
+                      <a routerLink="/login" style="color: orange"><i class="fa fa-money" aria-hidden="true"></i> Đăng
+                        nhập để xem mức lương <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="job-deadline" style="color: #4141af">
+                      <span><i class="fa fa-clock-o"
+                               aria-hidden="true"></i>  Hạn nộp: <strong>{{job?.expire | date}}</strong></span>
+                    </div>
+                    <div class="job-deadline">
+                    </div>
+                  </div>
+                  <div>
+                    <a style="color: #288728; font-size: small" class="job-address"><i
+                      class="fa fa-check-circle" aria-hidden="true"></i> {{job?.created_at | date}}</a>
+                  </div>
+                </div>
+                <div class="wrap-btn-appl" *ngIf="user_role == 1 || user_role == 3">
+                  <a href="javascript:" (click)="apply(job?.id)" class="btn btn-appl">Ứng tuyển</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="readmorestyle-wrap">
+              <a routerLink="/page/list" class="readallstyle reads1">Xem tất cả</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- (end) job board -->
+      <!-- sidebar -->
+      <div class="col-md-4 col-sm-12 col-12 clear-left">
+        <div class="job-sidebar">
+          <h2 class="widget-title">
+            <span>Chuyên ngành</span>
+          </h2>
+          <div class="catelog-list">
+            <ul>
+              <li *ngFor="let category of categories ">
+                <a id="category-select">
+                <span class="cate-img">
+                  <em (click)="categorySearch(category.id)">{{category?.name}}</em>
+                </span>
+                  <span class="cate-count">({{category?.jobs.length}})</span>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-sidebar">
+          <div class="sb-banner">
+            <img src="../../../../assets/frontend/img/ads1.jpg" class="advertisement">
+          </div>
+        </div>
+      </div>
+      <!-- (end) sidebar -->
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+
+<!-- (end) job board & sidebar section  -->

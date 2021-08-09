@@ -1,0 +1,124 @@
+<!-- main nav -->
+<div class="container-fluid fluid-nav">
+  <div class="container cnt-tnar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light tjnav-bar">
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+      <a routerLink="/" class="nav-logo">
+        <img src="../../../../assets/frontend/img/techjobs_bgb.png">
+      </a>
+      <button class="navbar-toggler tnavbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        <i class="fa fa-bars icn-res" aria-hidden="true"></i>
+
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto tnav-left tn-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/page/list">Việc Làm IT</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav" *ngIf="user_role == 3">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/seeker/register">Đăng Ký</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Đăng Nhập</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-employers" routerLink="/page/pre-register" tabindex="-1"
+               aria-disabled="true">Nhà
+              Tuyển Dụng</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav" *ngIf="user_role == 2">
+          <li class="nav-item">
+            <img *ngIf="currentUser?.image" src="http://localhost:8000/storage/company/{{currentUser?.image}}" alt=""
+                 style="vertical-align: middle; width: 35px; height: 35px; border-radius: 50%;">
+            <img *ngIf="!currentUser?.image" src="https://image.freepik.com/free-vector/company-logo-with-avatar-design_1465-2.jpg" alt="" style="vertical-align: middle; width: 35px; height: 35px; border-radius: 50%;">
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              {{currentUser?.name}}
+            </a>
+            <div class="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"  routerLink="dashboard/employer/{{currentUser?.id}}/details">Trang cá nhân</a>
+              <a class="dropdown-item" (click)="logout()">Đăng xuất</a>
+            </div>
+          </li>
+          <li>
+            <a class="nav-link btn-employers" href="javascript:" (click)="navigatePostJob()" tabindex="-1" aria-disabled="true">Đăng
+              tin tuyển dụng</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav" *ngIf="user_role == 1">
+          <li class="nav-item">
+            <img *ngIf="currentUser?.image" src="http://localhost:8000/storage/seeker/{{currentUser?.image}}" alt=""
+                 style="vertical-align: middle; width: 35px; height: 35px; border-radius: 50%;">
+            <img *ngIf="!currentUser?.image" src="https://previews.123rf.com/images/artinspiring/artinspiring1811/artinspiring181100743/127434465-portrait-of-young-man-beautiful-handsome-boy-avatar-guy-smiling-male-character-isolated-vector-illus.jpg" alt="" style="vertical-align: middle; width: 35px; height: 35px; border-radius: 50%;">
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              {{currentUser?.name}}
+            </a>
+            <div class="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"  routerLink="dashboard/seeker/{{currentUser?.id}}/details">Trang cá nhân</a>
+              <a class="dropdown-item" (click)="logout()">Đăng xuất</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav" *ngIf="user_role == 0">
+          <li class="nav-item">
+            <img *ngIf="currentUser?.image" src="http://localhost:8000/storage/admin/{{currentUser?.image}}" alt=""
+                 style="vertical-align: middle; width: 35px; height: 35px; border-radius: 50%;">
+            <img *ngIf="!currentUser?.image" src="https://previews.123rf.com/images/artinspiring/artinspiring1811/artinspiring181100743/127434465-portrait-of-young-man-beautiful-handsome-boy-avatar-guy-smiling-male-character-isolated-vector-illus.jpg" alt="" style="vertical-align: middle; width: 35px; height: 35px; border-radius: 50%;">
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              {{currentUser?.name}}
+            </a>
+            <div class="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"  routerLink="/admin">Trang quản trị</a>
+              <a class="dropdown-item" (click)="logout()">Đăng xuất</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- (end) main nav -->
+
+<div class="clearfix"></div>
+
+<!-- main banner -->
+<div class="container-fluid clear-left clear-right">
+  <div class="main-banner">
+    <div class="banner-image">
+      <img src="../../../../assets/frontend/img/banner2.jpg" alt="banner-image">
+    </div>
+  </div>
+  <div class="banner-content">
+    <h3>1000+ Jobs For Developers</h3>
+    <div class="banner-tags">
+      <ul>
+        <li><a href="#">Java</a></li>
+        <li><a href="#">Python</a></li>
+        <li><a href="#">Tester</a></li>
+        <li><a href="#">QA QC</a></li>
+        <li><a href="#">.NET</a></li>
+        <li><a href="#">Javascript</a></li>
+        <li><a href="#">Designer</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- (end) main banner -->
+
+
